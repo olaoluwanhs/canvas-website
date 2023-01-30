@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonJS",
+    "outDir": "out",
+    "sourceMap": true
+  }
+}
