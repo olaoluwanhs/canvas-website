@@ -16,10 +16,17 @@ window.addEventListener("load", () => {
     canvas.height = window.innerHeight;
     //
     let boxes: Array<AnimatedBox> = [];
-    for (let i = 0; i < 50; i++) {
-        boxes.push(new AnimatedBox(i * 350, 250, [5, 0]))
+    for (let i = 0; i < 25; i++) {
+        boxes.push(new AnimatedBox(i * 350, 150, [-5, 0]))
     }
-    // boxes.forEach((e) => { e.animate() })
+
+    window.addEventListener("resize", () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+
+    setTimeout(() => { animate(boxes) }, 4000)
+
 })
 
 class AnimatedBox {
@@ -34,40 +41,44 @@ class AnimatedBox {
         this.initialY = initialY;
         this.currentX = initialX;
         this.currentY = initialY;
-        this.new({
-            x: initialX, y: initialY, width: 300, height: 400, radius: 50
-        }, ["#9d29ee", "#9d29ee"]);
         this.increaments = incriments
+        this.draw();
 
     }
 
-    new(geometry: RoundRectGeo, colors: [string, string]) {
-        ctx.fillStyle = colors[0]
-        ctx.strokeStyle = colors[0]
-        ctx.beginPath();
-        ctx.roundRect(geometry.x, geometry.y, geometry.width, geometry.height, [geometry.radius, geometry.radius, geometry.radius, geometry.radius])
-        ctx.stroke();
-        ctx.fill();
-        ctx.closePath();
+    draw(geometry: RoundRectGeo = {
+        x: this.currentX, y: this.currentY, width: 300, height: 400, radius: 50
+    }, colors: [string, string] = ["#9d29ee", "#9d29ee"]) {
+
+        if (!(this.currentX < 0 || this.currentX > canvas.width) || !(this.currentY < 0 || this.currentY > canvas.height)) {
+            ctx.fillStyle = colors[0]
+            ctx.strokeStyle = colors[0]
+            ctx.beginPath();
+            ctx.roundRect(geometry.x, geometry.y, geometry.width, geometry.height, [geometry.radius, geometry.radius, geometry.radius, geometry.radius])
+            ctx.stroke();
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        this.move()
     }
 
-    animate(positionX: number = this.initialX, positionY: number = this.initialY) {
+    move(positionX: number = this.currentX, positionY: number = this.currentY) {
 
-        console.log(this.currentX)
-
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        this.new({
-            x: positionX, y: positionY, width: 300, height: 400, radius: 50
-        }, ["#9d29ee", "#9d29ee"]);
-
-        (positionX -= this.increaments[0]);
+        (positionX += this.increaments[0]);
         this.currentX = positionX;
-        (positionY -= this.increaments[1]);
+        (positionY += this.increaments[1]);
         this.currentY = positionY;
 
-        if ((positionX <= canvas.width && positionX >= 0) && (positionY <= canvas.height && positionY >= 0)) {
-            requestAnimationFrame(this.animate.bind(this));
-        }
     }
+}
+
+
+function animate(boxes: Array<AnimatedBox>) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    boxes.map((element) => { element.draw() })
+
+    console.log(boxes[boxes.length - 1].currentX);
+
+    if (boxes[boxes.length - 1].currentX >= canvas.width - 400) requestAnimationFrame(() => { animate(boxes) });
 }
