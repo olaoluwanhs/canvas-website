@@ -1,0 +1,49 @@
+// Buttons
+@mixin button($color) {
+  width: 10rem;
+  height: 2rem;
+  color: white;
+  border-radius: 5px;
+  padding: 0.9rem;
+  font-family: sans-serif;
+  text-decoration: none;
+  font-style: bolder;
+  transition: 0.5s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  border: none;
+  margin: 5px;
+  box-shadow: 1px 1px 5px #999999,
+    inset 2px 2px 4px lighten($color: $color, $amount: 10);
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 2px 2px 5px #999999,
+      inset 3px 3px 4px lighten($color: $color, $amount: 10);
+  }
+}
+.btn {
+  &-green {
+    @include button(green);
+    background-color: green;
+  }
+  &-red {
+    @include button(red);
+    background-color: red;
+  }
+  &-purple {
+    @include button(purple);
+    background-color: purple;
+  }
+}
+
+#progress-message {
+  width: 100vw;
+  height: 2rem;
+  text-align: center;
+  font-size: 18px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: $sub-bg;
+  margin: 2rem 0rem;
+}

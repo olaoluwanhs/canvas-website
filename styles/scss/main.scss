@@ -1,7 +1,17 @@
+$main-bg: rgb(255, 208, 255);
+$sub-bg: rgb(255, 39, 255);
+
+@import "./include_media";
+@import "./table";
+@import "./other";
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 #myCanvas {
@@ -12,15 +22,25 @@
 
 body {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: fit-content;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
 }
 
-#container {
+#canvas-container {
   width: 1000px;
-  height: 500px;
-  display: flex;
+  height: 650px;
+  display: none;
   align-items: center;
   justify-content: center;
+  @include media("<desktop") {
+    width: 100vw;
+    height: 50vh;
+  }
+}
+.property-control {
+  display: none;
 }

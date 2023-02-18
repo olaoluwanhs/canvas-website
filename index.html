@@ -8,9 +8,97 @@
     <title>Canvas</title>
   </head>
   <body>
-    <div id="container">
+    <div class="restart">
+      <a class="btn-purple" href="/">Reset Everything</a>
+    </div>
+    <div id="instructions">
+      <p>Instructions</p>
+      <ul>
+        <li>Maximum of 5 inputs</li>
+        <li>Enable the checkbox of every field to be used</li>
+        <li>Field names cannot be longer than 10 characters</li>
+        <li>Field types allowed are only those provided</li>
+        <li>Maximum of 2 image fields</li>
+        <li>View your table layout before you submit</li>
+      </ul>
+    </div>
+    <div id="select-schema">
+      <!--  -->
+      <form class="each-element">
+        <input name="checkbox-state" type="checkbox" />
+        <select name="select-state">
+          <option value="">Choose type</option>
+          <option value="image">Image</option>
+          <option value="text">Text</option>
+          <option value="number">number</option>
+        </select>
+        <input type="text" name="name-state" />
+      </form>
+      <!--  --><!--  -->
+      <form class="each-element">
+        <input name="checkbox-state" type="checkbox" />
+        <select name="select-state">
+          <option value="">Choose type</option>
+          <option value="image">Image</option>
+          <option value="text">Text</option>
+          <option value="number">number</option>
+        </select>
+        <input type="text" name="name-state" />
+      </form>
+      <!--  --><!--  -->
+      <form class="each-element">
+        <input name="checkbox-state" type="checkbox" />
+        <select name="select-state">
+          <option value="">Choose type</option>
+          <option value="image">Image</option>
+          <option value="text">Text</option>
+          <option value="number">number</option>
+        </select>
+        <input type="text" name="name-state" />
+      </form>
+      <!--  --><!--  -->
+      <form class="each-element">
+        <input name="checkbox-state" type="checkbox" />
+        <select name="select-state">
+          <option value="">Choose type</option>
+          <option value="image">Image</option>
+          <option value="text">Text</option>
+          <option value="number">number</option>
+        </select>
+        <input type="text" name="name-state" />
+      </form>
+      <!--  --><!--  -->
+      <form class="each-element">
+        <input name="checkbox-state" type="checkbox" />
+        <select name="select-state">
+          <option value="">Choose type</option>
+          <option value="image">Image</option>
+          <option value="text">Text</option>
+          <option value="number">number</option>
+        </select>
+        <input type="text" name="name-state" />
+      </form>
+      <!--  -->
+      <button class="view-table btn-purple">View</button>
+      <button class="render-table btn-purple">SUBMIT</button>
+    </div>
+    <div id="canvas-container">
       <canvas id="myCanvas"></canvas>
     </div>
+    <div id="progress-message">
+      <p></p>
+    </div>
+    <div class="property-control">
+      <label>Backround Color</label>
+      <input id="background-color" type="color" />
+      <label>Boxes Color</label>
+      <input id="box-color" type="color" />
+    </div>
+    <div class="table-container">
+      <table></table>
+    </div>
+    <script src="./out/spreadInput.js"></script>
+    <script src="./out/Boxes.js"></script>
     <script src="./out/main.js"></script>
   </body>
 </html>
